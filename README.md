@@ -47,3 +47,39 @@ Please visit the [Lawnchair Contributing Guidelines](CONTRIBUTING.md) for inform
 -   [_XDA_ thread](https://forum.xda-developers.com/t/lawnchair-customizable-pixel-launcher.3627137/)
 
 You can view all our links in the [Lawnchair Wiki](https://github.com/LawnchairLauncher/lawnchair/wiki).
+
+## Modifications
+
+-   Added ability to copy Calculator search result to clipboard
+-   Added ability to include AssetFont and ResourceFont font types in font list
+-   Added Google Go, Lawnfeed and Neo Feed to Feed providers whitelist
+-   Added Inter ResourceFont font to font list
+-   Added iOS, Light squircle, One UI, Strong squircle and Ultra squircle to Custom Icon corner shapes
+-   Added Flat hexagon, Heptagon, Lemon, Light squircle, Pentagon, Strong squircle, Triangle and Ultra squircle icon shapes
+-   Added mathematical constants phi and tau to Calcuator search
+-   Added new line to ignored whitespace elements list in Calculator search
+-   Allowed mathematical constants e, phi, pi and tau to be case insensitive in Calculator search
+-   Allowed mathematical symbols −, ×, ÷, ≠, ≥, ≤, ∨, ∧, φ, π and τ to be used in Calculator search
+-   Arranged Custom Icon corner shapes in alphabetical order
+-   Arranged Feed providers in alphabetical order
+-   Arranged Quick Search Bar providers in alphabetical order
+-   Arranged sans-serif system fonts in alphabetical order
+-   Corrected case of user interface label
+-   Corrected font variant label
+-   Corrected typo in text string
+-   Ensured Custom Icon shape sliders are of equal length
+-   Ensured only one radio button is selected at any one time in font list
+-   Ensured radio button is selected on first visit to font list
+-   Ensured System Icon shape is as accurate as possible
+-   Ensured user interface label can be translated
+-   Ensured variant is displayed after family for default font labels
+-   Fixed One UI icon corner shape
+-   Formatted Calculator search result equation to display mathematical symbols
+-   Increased adjustment granularity of all percentage sliders from 10% to 5%
+-   Reduced minimum Home screen and App drawer Icons Label size from 50% to 30%
+-   Removed duplicate Inter font from font list
+-   Renamed Inter ResourceFont font from Inter to Inter v4.0
+-   Signed APK with personal key
+-   Supported all variants of Inter ResourceFont font
+-   Updated Google Fonts list
+-   Updated Inter ResourceFont font from v3.12 to v4.0

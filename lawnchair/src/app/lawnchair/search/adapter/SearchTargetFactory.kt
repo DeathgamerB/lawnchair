@@ -94,6 +94,26 @@ class SearchTargetFactory(
     ): SearchTargetCompat {
         val result = calculation.result
         val equation = calculation.equation
+        val formattedEquation = equation
+            .replace(Regex("\\s+"), "")
+            .replace("E", "e")
+            .replace("phi", "φ", true)
+            .replace("pi", "π", true)
+            .replace("tau", "τ", true)
+            .replace("-", "−")
+            .replace("*", "×")
+            .replace("/", "÷")
+            .replace(">=", "≥")
+            .replace("<=", "≤")
+            .replace("||", "∨")
+            .replace("&&", "∧")
+            .replace("!=", "≠")
+            .replace(",", ", ")
+            .replace(Regex("(?<!=)=(?!=)|=="), " $0 ")
+            .replace(Regex("([+−×÷%\\^>≥<≤∨∧≠])"), " $1 ")
+            .replace(Regex("\\s+"), " ")
+            .trim()
+            .plus(" =")
         val uuid = UUID.randomUUID().toString()
         val id = "calculator:$uuid"
         val action = SearchActionCompat.Builder(id, result)
@@ -101,18 +121,20 @@ class SearchTargetFactory(
                 Icon.createWithResource(context, R.drawable.calculator)
                     .setTint(ColorTokens.TextColorSecondary.resolveColor(context)),
             )
-            .setSubtitle(equation)
+            .setSubtitle(formattedEquation)
             .setIntent(Intent())
             .build()
 
-        val extras = bundleOf()
+        val extras = bundleOf(
+            "result" to result,
+        )
 
         return createSearchTarget(
             id,
             action,
             LayoutType.CALCULATOR,
             SearchTargetCompat.RESULT_TYPE_CALCULATOR,
-            "",
+            CALCULATOR,
             extras,
         )
     }

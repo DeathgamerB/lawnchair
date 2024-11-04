@@ -72,7 +72,21 @@ class IconShapeManager(private val context: Context) {
             IconShape.Squircle,
             IconShape.Sammy,
             IconShape.Teardrop,
+            IconShape.Cupertino,
             IconShape.Cylinder,
+            IconShape.Diamond,
+            IconShape.Egg,
+            IconShape.FlatHexagon,
+            IconShape.Heptagon,
+            IconShape.Hexagon,
+            IconShape.Lemon,
+            IconShape.LightSquircle,
+            IconShape.Octagon,
+            IconShape.Pentagon,
+            IconShape.SharpSquare,
+            IconShape.StrongSquircle,
+            IconShape.Triangle,
+            IconShape.UltraSquircle,
         )
             .minByOrNull {
                 shapePath.reset()

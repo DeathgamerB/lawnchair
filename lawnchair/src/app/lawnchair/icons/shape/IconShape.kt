@@ -24,6 +24,8 @@ import android.graphics.Path
 import android.graphics.PointF
 import android.util.Log
 import com.android.launcher3.Utilities
+import kotlin.math.cos
+import kotlin.math.sin
 
 open class IconShape(
     val topLeft: Corner,
@@ -464,6 +466,211 @@ open class IconShape(
         }
     }
 
+    object FlatHexagon : IconShape(
+        IconCornerShape.arc,
+        IconCornerShape.arc,
+        IconCornerShape.arc,
+        IconCornerShape.arc,
+        1f,
+        1f,
+        1f,
+        1f,
+    ) {
+
+        override fun getMaskPath(): Path {
+            return Path().also {
+                val centerX = 50f
+                val centerY = 50f
+                val radius = 50f
+                val angleStep = 360f / 6f
+
+                for (i in 0..5) {
+                    val angle = angleStep * i
+                    val x = centerX + radius * cos(Math.toRadians(angle.toDouble())).toFloat()
+                    val y = centerY + radius * sin(Math.toRadians(angle.toDouble())).toFloat()
+                    if (i == 0) {
+                        it.moveTo(x, y)
+                    } else {
+                        it.lineTo(x, y)
+                    }
+                }
+
+                it.close()
+            }
+        }
+
+        override fun toString(): String {
+            return "flatHexagon"
+        }
+    }
+
+    object Heptagon : IconShape(
+        IconCornerShape.arc,
+        IconCornerShape.arc,
+        IconCornerShape.arc,
+        IconCornerShape.arc,
+        1f,
+        1f,
+        1f,
+        1f,
+    ) {
+
+        override fun getMaskPath(): Path {
+            return Path().also {
+                val centerX = 50f
+                val centerY = 50f
+                val radius = 50f
+                val angleStep = 360f / 7f
+                val startingAngle = 90f - (angleStep / 2f)
+
+                for (i in 0..6) {
+                    val angle = startingAngle + angleStep * i
+                    val x = centerX + radius * cos(Math.toRadians(angle.toDouble())).toFloat()
+                    val y = centerY + radius * sin(Math.toRadians(angle.toDouble())).toFloat()
+                    if (i == 0) {
+                        it.moveTo(x, y)
+                    } else {
+                        it.lineTo(x, y)
+                    }
+                }
+
+                it.close()
+            }
+        }
+
+        override fun toString(): String {
+            return "heptagon"
+        }
+    }
+
+    object Lemon : IconShape(
+        IconCornerShape.arc,
+        IconCornerShape.arc,
+        IconCornerShape.arc,
+        IconCornerShape.arc,
+        1f,
+        0.2f,
+        0.2f,
+        1f,
+    ) {
+
+        override fun toString(): String {
+            return "lemon"
+        }
+    }
+
+    object LightSquircle : IconShape(
+        IconCornerShape.LightSquircle,
+        IconCornerShape.LightSquircle,
+        IconCornerShape.LightSquircle,
+        IconCornerShape.LightSquircle,
+        1f,
+        1f,
+        1f,
+        1f,
+    ) {
+
+        override fun toString(): String {
+            return "lightSquircle"
+        }
+    }
+
+    object Pentagon : IconShape(
+        IconCornerShape.arc,
+        IconCornerShape.arc,
+        IconCornerShape.arc,
+        IconCornerShape.arc,
+        1f,
+        1f,
+        1f,
+        1f,
+    ) {
+
+        override fun getMaskPath(): Path {
+            return Path().also {
+                val centerX = 50f
+                val centerY = 50f
+                val radius = 50f
+                val angleStep = 360f / 5f
+                val startingAngle = 90f - angleStep / 2f
+
+                for (i in 0..4) {
+                    val angle = startingAngle + angleStep * i
+                    val x = centerX + radius * cos(Math.toRadians(angle.toDouble())).toFloat()
+                    val y = centerY + radius * sin(Math.toRadians(angle.toDouble())).toFloat()
+                    if (i == 0) {
+                        it.moveTo(x, y)
+                    } else {
+                        it.lineTo(x, y)
+                    }
+                }
+
+                it.close()
+            }
+        }
+
+        override fun toString(): String {
+            return "pentagon"
+        }
+    }
+
+    object StrongSquircle : IconShape(
+        IconCornerShape.StrongSquircle,
+        IconCornerShape.StrongSquircle,
+        IconCornerShape.StrongSquircle,
+        IconCornerShape.StrongSquircle,
+        1f,
+        1f,
+        1f,
+        1f,
+    ) {
+
+        override fun toString(): String {
+            return "strongSquircle"
+        }
+    }
+
+    object Triangle : IconShape(
+        IconCornerShape.arc,
+        IconCornerShape.arc,
+        IconCornerShape.arc,
+        IconCornerShape.arc,
+        1f,
+        1f,
+        1f,
+        1f,
+    ) {
+
+        override fun getMaskPath(): Path {
+            return Path().also {
+                it.moveTo(50f, 0f)
+                it.lineTo(0f, 100f)
+                it.lineTo(100f, 100f)
+                it.close()
+            }
+        }
+
+        override fun toString(): String {
+            return "triangle"
+        }
+    }
+
+    object UltraSquircle : IconShape(
+        IconCornerShape.UltraSquircle,
+        IconCornerShape.UltraSquircle,
+        IconCornerShape.UltraSquircle,
+        IconCornerShape.UltraSquircle,
+        1f,
+        1f,
+        1f,
+        1f,
+    ) {
+
+        override fun toString(): String {
+            return "ultraSquircle"
+        }
+    }
+
     companion object {
 
         fun fromString(value: String, context: Context): IconShape? {
@@ -489,6 +696,14 @@ open class IconShape(
             "hexagon" -> Hexagon
             "diamond" -> Diamond
             "egg" -> Egg
+            "flatHexagon" -> FlatHexagon
+            "heptagon" -> Heptagon
+            "lemon" -> Lemon
+            "lightSquircle" -> LightSquircle
+            "pentagon" -> Pentagon
+            "strongSquircle" -> StrongSquircle
+            "triangle" -> Triangle
+            "ultraSquircle" -> UltraSquircle
             "" -> null
             else -> runCatching { parseCustomShape(value) }.getOrNull()
         }
